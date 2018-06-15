@@ -1,0 +1,7 @@
+This folder contains samples in order to show library usage.
+
+Tutorials folders has the intent to introduce users to a gradual usage of the library.
+
+To compile samples :
+1) Ensure main library are compiled with ". install.sh" in main folder
+2) Move to sample and execute sh ./cmakex.sh for each sample you want compile

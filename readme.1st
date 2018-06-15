@@ -1,0 +1,34 @@
+EGE2D is a fast GUI library designed mainly for industrial environment and smart home, 
+but also for any application it requires a GUI, as an easier alternative to Qt for example.
+More in general it support automation in the way it supply an interfaces to devices 
+to be controlled like HMI and SCADA systems. 
+The integration is fast and easy and the same application can run on many platforms 
+like Linux,Windows,Mac,Web through browsers (so it can run also on any mobile device).
+As example a compiled implementation on the web is http://www.ege3d.it/scada/application.html.
+
+INSTALLATION DESCRIPTION
+
+1) Install dependencies as described in document "EGE2D-xxx-dependencies list.txt" according with your system
+
+2) Execute : 
+      chmod +rwx install-emscripten.sh 
+      chmod +rwx install.sh
+      chmod +rwx cmakex.sh
+      chmod +rwx cleanall.sh
+      
+      
+3) "cmakex.sh" in main folder contains toolchain that allow to switch destination platform (linux/windows/GNUvsCLang/emscripten...)
+      You should edit this file to set your desired destination. You can also leave as default to linux.
+      You can do it later if you want to recompile for another platform.      
+      
+4) Execute from terminal (if you are compiling for javascript target as set in cmakex.sh, you can skip this step in other cases):           
+      ". install-emscripten.sh"   (after installation, take care to update emscripten folder location in CMakeLists.txt for item
+                                    "SET(EGEEMSCRIPTEN_CODE 		${EGEMAIN_PATH}/../emsdk/emscripten/1.38.6/)" to your
+                                    emscripten most updated version)
+5) Execute :
+      ". install.sh"   <----  be carefull to call the command as is with dot+space at the beginning if not the script miss to work 
+                              switching directory trees.
+6) To recompile (if you ask for)
+      "sh ./cmakex.sh" <----  doit for every sample you want to ri-compile
+      
+Thanks      
