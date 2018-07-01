@@ -32,3 +32,6 @@ INSTALLATION DESCRIPTION
       "sh ./cmakex.sh" <----  doit for every sample you want to ri-compile
       
 Thanks      
+
+(Just for your knowledge, nothing here is mandatory) I work on a gentoo linux distro where I developed the application using both CLang, g++ and Emscripten, mainly. The IDE environment I use is Netbeans 8.2. The compilation process happens through CMake for toolchining and I succesfully tested compilation also vith a virtual machine (virtualbox) where I installed xubuntu 16.04. I hope this helps)
+
