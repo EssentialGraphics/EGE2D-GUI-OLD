@@ -13,7 +13,7 @@ Due to the nature of the application, the display image (what application user s
 (with low resources uses) and send to GPU card each time refresh required, keeping high frame rate (more than 24fps)
 for mouse and keyboard handling also on browsers and mobile devices.
 
-INSTALLATION DESCRIPTION
+INSTALLATION DESCRIPTION (on linux)  -  (we are preparing .bat installation for windows users also, wait just a bit)
 
 1) Install dependencies as described in document "EGE2D-xxx-dependencies list.txt" according with your system
 
@@ -40,5 +40,9 @@ INSTALLATION DESCRIPTION
       
 Thanks      
 
-(Just for your knowledge, nothing here is mandatory) I work on a gentoo linux distro where I developed the application using both CLang, g++ and Emscripten, mainly. The IDE environment I use is Netbeans 8.2. The compilation process happens through CMake for toolchining and I succesfully tested compilation also vith a virtual machine (virtualbox) where I installed xubuntu 16.04. I hope this helps)
+(Just for your knowledge, nothing here is mandatory) I work on a gentoo linux distro where I developed 
+the application using both CLang, g++ and Emscripten, mainly. 
+The IDE environment I use is Netbeans 8.2. 
+The compilation process happens through CMake for toolchining and I succesfully tested compilation also 
+with a virtual machine (virtualbox) where I installed xubuntu 16.04. I hope this helps)
 
