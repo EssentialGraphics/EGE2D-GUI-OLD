@@ -24,4 +24,4 @@ sudo apt-get install mingw-w64   # windows compiler (windows target)
 
 ------------------------------------------------------------------------------------
 
-(libs are automatically installed within install.sh)
+(other libs are automatically installed within install.sh)
