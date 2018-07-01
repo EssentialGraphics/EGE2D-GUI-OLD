@@ -54,3 +54,4 @@ The IDE environment I use is Netbeans 8.2.
 The compilation process happens through CMake for toolchining and I succesfully tested compilation also 
 with a virtual machine (virtualbox) where I installed xubuntu 16.04. I hope this helps)
 
+We appreciate your comments, questions and suggestions at: info at ege3d dot it
