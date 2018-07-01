@@ -13,6 +13,14 @@ Due to the nature of the application, the display image (what application user s
 (with low resources uses) and send to GPU card each time refresh required, keeping high frame rate (more than 24fps)
 for mouse and keyboard handling also on browsers and mobile devices.
 
+The documentation is self explained into code and we are providing progressive tutorials in order to keep simple 
+to begin and master as easier as possible and in a few time also for students. 
+(we are working on this, be patient a bit please). 
+We are interested also to be in contact with teachers if they have comments and/or suggestments.
+The idea on the ground is the application must be usefull for much users as possible.
+
+
+
 INSTALLATION DESCRIPTION (on linux)  -  (we are preparing .bat installation for windows users also, wait just a bit)
 
 1) Install dependencies as described in document "EGE2D-xxx-dependencies list.txt" according with your system
