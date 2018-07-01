@@ -7,7 +7,11 @@ like Linux,Windows,Mac,Web through browsers (so it can run also on any mobile de
 As example a compiled implementation on the web is http://www.ege3d.it/scada/application.html.
 As target we want to complete the application in order to support also CN control systems for any pourposes.
 
-The library is based on OpenGL-ES2/3 for porting reasons. With a few effort will also run under DirectX and Metal (future feature if needed). Due to the nature of the application, the display image (what application user see) is calculated in CPU (with low resources uses) and send to GPU card each time refresh required, keeping high frame rate (more than 24fps) for mouse and keyboard handling also on browsers and mobile devices.
+The library is based on OpenGL-ES2/3 for porting reasons. With a few effort will also run under DirectX and Metal 
+(future feature if needed). 
+Due to the nature of the application, the display image (what application user see) is calculated in CPU 
+(with low resources uses) and send to GPU card each time refresh required, keeping high frame rate (more than 24fps)
+for mouse and keyboard handling also on browsers and mobile devices.
 
 INSTALLATION DESCRIPTION
 
