@@ -41,7 +41,7 @@ INSTALLATION DESCRIPTION (on linux)  -  (we are preparing .bat installation for 
                                     "SET(EGEEMSCRIPTEN_CODE 		${EGEMAIN_PATH}/../emsdk/emscripten/1.38.6/)" to your
                                     emscripten most updated version)
 
-    4.1) PS: Remember to call copy "emsdk_set_env.sh" content to your .bashrc config file.
+    4.1) PS: Remember to copy "emsdk_set_env.sh" content to the end of your .bashrc config file.
              If this is done, calling command emcc or em++ from terminal you reach the application executable and see its output. 
 
 
