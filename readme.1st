@@ -37,9 +37,7 @@ INSTALLATION DESCRIPTION (on linux)  -  (we are preparing .bat installation for 
       You can do it later if you want to recompile for another platform.      
       
 4) Execute from terminal (if you are compiling for javascript target as set in cmakex.sh, you can skip this step in other cases):           
-      ". install-emscripten.sh"   (after installation, take care to update emscripten folder location in CMakeLists.txt for item
-                                    "SET(EGEEMSCRIPTEN_CODE 		${EGEMAIN_PATH}/../emsdk/emscripten/1.38.6/)" to your
-                                    emscripten most updated version)
+      ". install-emscripten.sh"  
 
     4.1) PS: Remember to copy "emsdk_set_env.sh" content to the end of your .bashrc config file.
              If this is done, calling command emcc or em++ from terminal you reach the application executable and see its output. 
