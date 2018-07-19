@@ -1,23 +1,26 @@
 echo "Downloads EMSCRIPTEN."
 
 cd ..
-#git clone https://github.com/juj/emsdk.git
-git clone http://github.com/kripken/emscripten.git
+
+# Get the emsdk repo
+git clone https://github.com/juj/emsdk.git
+
+# Enter that directory
 cd emsdk
+
 # Fetch the latest registry of available tools.
 ./emsdk update
+
 # Download and install the latest SDK tools.
-# ./emsdk install latest
-./emsdk install 1.38.6
+./emsdk install latest
 
 # Make the "latest" SDK "active" for the current user. (writes ~/.emscripten file)
-#./emsdk activate latest
-./emsdk activate 1.38.6
+./emsdk activate latest
 
 # Activate PATH and other environment variables in the current terminal
 source ./emsdk_env.sh
-cd ..
 
-EGE2D NOTE : it's usefull to copy and paste PATHs contained in just installed emsdk_env.sh to your .bashrc file to make emcc/em++ 
-reachebles from any teminal window. thanks
-
+echo " IMPORTANT TO DO !!!! --------------------------------------------------------------------------------------"
+echo " Open the file ./emsdk/emsdk_set_env.sh and copy its content into your .bashrc file in your home folder"
+echo " This is used to supply the proper path to EMSCRIPTEN"
+echo " -----------------------------------------------------------------------------------------------------------"
