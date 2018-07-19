@@ -37,8 +37,8 @@ INCLUDE_DIRECTORIES(${EGE2D_SOURCE_CODE})
 SET(EGEBOOST_CODE 		${EGEMAIN_PATH}/libssrc/others/boost_1_66_0/)
 INCLUDE_DIRECTORIES(${EGEBOOST_CODE})
 
-# we assume emscripten is installed through install-emscripten.sh
-SET(EGEEMSCRIPTEN_CODE 		${EGEMAIN_PATH}/../emsdk/emscripten/1.38.6/)
+# we assume emscripten is installed through install-emscripten.sh and environment variable EMSCRIPTEN is set in .bashrc
+SET(EGEEMSCRIPTEN_CODE 		$ENV{EMSCRIPTEN)
 INCLUDE_DIRECTORIES(${EGEEMSCRIPTEN_CODE})
 
 #informazioni di DEBUG
