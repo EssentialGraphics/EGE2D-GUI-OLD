@@ -40,9 +40,15 @@ INSTALLATION DESCRIPTION (on linux)  -  (we are preparing .bat installation for 
       ". install-emscripten.sh"   (after installation, take care to update emscripten folder location in CMakeLists.txt for item
                                     "SET(EGEEMSCRIPTEN_CODE 		${EGEMAIN_PATH}/../emsdk/emscripten/1.38.6/)" to your
                                     emscripten most updated version)
+
+    4.1) PS: Remember to call copy "emsdk_set_env.sh" content to your .bashrc config file.
+             If this is done, calling command emcc or em++ from terminal you reach the application executable and see its output. 
+
+
 5) Execute :
       ". install.sh"   <----  be carefull to call the command as is with dot+space at the beginning if not the script miss to work 
                               switching directory trees.
+
 6) To recompile (if you ask for)
       "sh ./cmakex.sh" <----  doit for every sample you want to ri-compile
       
