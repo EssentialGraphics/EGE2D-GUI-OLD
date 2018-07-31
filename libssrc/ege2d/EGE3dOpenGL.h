@@ -22,12 +22,7 @@
 
     #ifdef EGE_EMSCRIPTEN
         #define GLFW_INCLUDE_NONE
-
-        
         #include <emscripten/emscripten.h>
-
-        //#define EGE_USE_GLFW
-        // #include <GL/glfw.h>
         #define EGE_USE_GLFW3
         #include <GLFW/glfw3.h> 
     #else

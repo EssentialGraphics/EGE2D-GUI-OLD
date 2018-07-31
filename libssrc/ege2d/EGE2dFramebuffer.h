@@ -14,43 +14,9 @@
 #ifndef EGE2DFRAMEBUFFER_H
 #define EGE2DFRAMEBUFFER_H
 
-//// Bring in OpenGL 
-//// Windows
-//#ifdef WIN32
-//#include <windows.h>                    // Must have for Windows platform builds
-//#ifndef GLEW_STATIC
-//#define GLEW_STATIC
-//#endif
-//
-//#include <gl\glew.h>			// OpenGL Extension "autoloader"
-//#include <gl\gl.h>			// Microsoft OpenGL headers (version 1.1 by themselves)
-//#endif
-//
-//// Mac OS X
-//#ifdef __APPLE__
-//#include <TargetConditionals.h>
-//#if TARGET_OS_IPHONE | TARGET_IPHONE_SIMULATOR
-//#include <OpenGLES/ES2/gl.h>
-//#include <OpenGLES/ES2/glext.h>
-//#define OPENGL_ES
-//#else
-//#include <GL/glew.h>
-//#include <OpenGL/gl.h>		// Apple OpenGL haders (version depends on OS X SDK version)
-//#endif
-//#endif
-//
-//// Linux
-//#ifdef __t_linux
-//#define GLEW_STATIC
-//#include <GL/glew.h>
-//#endif
-//
-//#if defined(EGE_EMSCRIPTEN) || defined(EGE_EMSCRIPTEN_sim)
-//#define GLEW_STATIC
-//#include <emscripten_opengl/glew.h>
-//#endif
+
 #include <iostream>
-//#include <math3d.h>
+
 #include <jpge.h>
 
 #include <EGE3dOpenGL.h>
@@ -58,13 +24,6 @@
 #include <EGE3dOpenGLInterface.h>
 #include <EGE3dTextures.h>
 
-//enum enuTargetBuffer{
-//    COLOR_COMPONENT=0,
-//    DEPTH_COMPONENT=1,
-//    AUX01_COMPONENT=2,
-//    AUX02_COMPONENT=3,
-//    STENCIL_COMPONENT=4
-//};
 
 class ege2dFramebuffer{
     public:

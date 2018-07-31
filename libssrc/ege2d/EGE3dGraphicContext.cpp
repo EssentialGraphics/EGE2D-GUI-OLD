@@ -217,12 +217,6 @@ ege3dGraphicContext::ege3dGraphicContext(std::string caption, int width, int hei
     
 // Render to our framebuffer
 
-#ifndef EGE_USE_WebGL2 
-
-#else
-//    glBindFramebufferEXT(GL_FRAMEBUFFER, __gpuframebuffer);
-//    glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,  __depthTextureId, 0);
-#endif    
   
 #ifdef EGE_EMSCRIPTEN    
     initEmscriptenMouseHandlers();   // attiva gestore eventi per emscripten
@@ -441,13 +435,6 @@ void ege3dGraphicContext::OpenGLES2Initialize(void){
     
     ////////////////////////////////////////////////////////////////////////////
     // Create a Texture coordinate Buffer Object and copy the vertex data to it
-//    glGenBuffers(1, &cbo);
-//    glBindBuffer(GL_ARRAY_BUFFER, cbo);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(coords), coords, GL_STATIC_DRAW);
-//    
-//    GLint texCoordsAttrib = glGetAttribLocation(shaderProgram, "a_texCoord");
-//    glEnableVertexAttribArray(texCoordsAttrib);
-//    glVertexAttribPointer(texCoordsAttrib, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), 0);
 
     
     GLint texCoordsAttrib = glGetAttribLocation(shaderProgram, "a_texCoord");
@@ -488,26 +475,6 @@ void ege3dGraphicContext::executeRendering(ege2dFramebuffer *fbo){
    glfwSwapBuffers(window);    
     egeLog(EGE_CHECK_FOR_OPENGL_ERROR,"glfwSwapBuffers");
 #else
-   //glBindFramebuffer ( GL_FRAMEBUFFER, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); 
-   
-   //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-   //glBindFramebuffer ( GL_FRAMEBUFFER, 0 );  
-    
-   //GLenum DrawBuffers[1] = {fbo->getFramebuffer()};
-//   GLenum DrawBuffers[1] = { GL_DEPTH_COMPONENT16 };
-//   glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-   
-   //glfwSwapBuffers(window);     
-    
-   //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    
-    // Set the sampler texture unit to 0
-    
-    // Bind the base map
-    
-    //debug("glUniform1i(textureUniform, 0);")
-//    glActiveTexture(GL_TEXTURE0);
-//    glBindTexture(GL_TEXTURE_2D,21);
     glUniform1i(textureUniform,0);   // 
     
     // Draw a rectangle from the 2 triangles using 6 indices

@@ -14,45 +14,6 @@
 #ifndef EGE3DBASETYPES_H
 #define EGE3DBASETYPES_H
 
-//#include <math3d.h>
-
-//// Bring in OpenGL 
-//// Windows
-//#ifdef WIN32
-//#include <windows.h>                    // Must have for Windows platform builds
-//#ifndef GLEW_STATIC
-//#define GLEW_STATIC
-//#endif
-//
-//#include <gl\glew.h>			// OpenGL Extension "autoloader"
-//#include <gl\gl.h>			// Microsoft OpenGL headers (version 1.1 by themselves)
-//#endif
-//
-//// Mac OS X
-//#ifdef __APPLE__
-//#include <TargetConditionals.h>
-//#if TARGET_OS_IPHONE | TARGET_IPHONE_SIMULATOR
-//#include <OpenGLES/ES2/gl.h>
-//#include <OpenGLES/ES2/glext.h>
-//#define OPENGL_ES
-//#else
-//#include <GL/glew.h>
-//#include <OpenGL/gl.h>		// Apple OpenGL haders (version depends on OS X SDK version)
-//#endif
-//#endif
-//
-//// Linux
-//#ifdef __t_linux
-//#define GLEW_STATIC
-//#include <GL/glew.h>
-//#endif
-//
-//// Emscripten ()
-//#if defined(EGE_EMSCRIPTEN) || defined(EGE_EMSCRIPTEN_sim)
-//#define GLEW_STATIC
-//#include <emscripten_opengl/glew.h>
-//#endif
-
 #include <EGE3dOpenGL.h>
 
 #include <string>

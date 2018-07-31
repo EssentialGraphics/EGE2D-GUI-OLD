@@ -6,48 +6,6 @@
  */
 #include <sstream>
 #include "EGE3dTextures.h"
-//#include <Object.h>
-
-//#include "HSL.h"
-
-//// Bring in OpenGL 
-//// Windows
-//#ifdef WIN32
-//#include <windows.h>                    // Must have for Windows platform builds
-//#ifndef GLEW_STATIC
-//#define GLEW_STATIC
-//#endif
-//
-//#include <gl\glew.h>			// OpenGL Extension "autoloader"
-//#include <gl\gl.h>			// Microsoft OpenGL headers (version 1.1 by themselves)
-//#endif
-//
-//// Mac OS X
-//#ifdef __APPLE__
-//#include <TargetConditionals.h>
-//#if TARGET_OS_IPHONE | TARGET_IPHONE_SIMULATOR
-//#include <OpenGLES/ES2/gl.h>
-//#include <OpenGLES/ES2/glext.h>
-//#define OPENGL_ES
-//#else
-//#include <GL/glew.h>
-//#include <OpenGL/gl.h>		// Apple OpenGL haders (version depends on OS X SDK version)
-//#endif
-//#endif
-//
-//// Linux
-//#ifdef __t_linux
-//#define GLEW_STATIC
-//#include <GL/glew.h>
-//#endif
-//
-//// Emscripten ()
-//#if defined(EGE_EMSCRIPTEN) || defined(EGE_EMSCRIPTEN_sim)
-//#define GLEW_STATIC
-//#include <emscripten_opengl/glew.h>
-//#define GLEW_STATIC
-//#include <GL/glew.h>
-//#endif
 
 #include <EGE3dOpenGL.h>
 
@@ -90,13 +48,7 @@ void egeITextureOperator::execute(ege3dTextureAbstract* texture, EGECoordVec2i p
     // std::cout << "void egeITextureOperator::execute(ege3dTextureAbstract* texture, EGECoordVec2i position)" << std::endl;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-//egeTexOpCopy::egeTexOpCopy(){
-//    std::cout << "egeTexOpCopy::egeTexOpCopy()" << std::endl;
-//}
-//egeTexOpCopy::egeTexOpCopy(ege3dTextureAbstract* texture, EGECoordVec2i position){
-//    std::cout << "egeTexOpCopy::egeTexOpCopy(ege3dTextureAbstract* texture, EGECoordVec2i position)" << std::endl;
-//}
+
 
 egeTexOpCopy::~egeTexOpCopy(){
     //std::cout << "egeTexOpCopy::~egeTexOpCopy()" << std::endl;
@@ -393,23 +345,15 @@ void ege3dTextureAbstract::setTextureFilterMode__(EGEushort textureType, EGEusho
             break;
     }
 
-#ifdef EGE_USE_WebGL2
-    // non supportato da WebGL
-    //glTexParameteri(textureType, GL_TEXTURE_BASE_LEVEL, 0);
-    //glTexParameteri(textureType, GL_TEXTURE_MAX_LEVEL, 5);
-#endif
+
     
-    //glTexParameteri( textureType, GL_GENERATE_MIPMAP, GL_TRUE );
-    //glGenerateMipmap(textureType); egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glGenerateMipmap [SHARE-98]");
-    //glBindTexture(textureType, 0); egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glBindTexture [SHARE-99]");
+    
         
 }
 
 
 int ege3dTextureAbstract::loadGpuTextureArray2D(EGEushort mode, GLsizei width, GLsizei height, GLsizei layerCount, GLsizei mipLevelCount){
-//    GLsizei width = 2;
-//    GLsizei height = 2;
-//    GLsizei layerCount = 1;
+
     if(mipLevelCount<=0)mipLevelCount=1;
     
     glGenTextures(1, &base_gpuTexture__.textureId);
@@ -426,9 +370,7 @@ int ege3dTextureAbstract::loadGpuTextureArray2D(EGEushort mode, GLsizei width, G
     //Altogether you can specify a 3D box subset of the overall texture, but only one mip level at a time.
     int layerIndexOffset=0; // primo indice disponibile
     
-//    glTexSubImage3D(GL_TEXTURE_2D_ARRAY, 0, 0, 0, layerIndexOffset+0, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE,  &__base_textureInfo.p_image_data8[0]);
-//    glTexSubImage3D(GL_TEXTURE_2D_ARRAY, 0, 0, 0, layerIndexOffset+1, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE, &__base_textureInfo.p_image_data8[16]);
-    
+
     int indexOffset=0;
     for(int i=0; i<layerCount; i++){
         indexOffset=i*(width*height*4);
@@ -468,22 +410,10 @@ int ege3dTextureAbstract::loadGpu(EGEushort mode){
             if(base_textureInfo__.p_image_data8!=NULL){
                     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, base_textureInfo__.uncomp_width, base_textureInfo__.uncomp_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, base_textureInfo__.p_image_data8);   egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glTexImage2D [08-12]");
             }
-
-//            if(__base_textureInfo.p_image_data16!=NULL){
-//                if(this->__base_textureInfo.uncomp_actual_comps==3){
-//                    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, __base_textureInfo.uncomp_width, __base_textureInfo.uncomp_height, 0, GL_RGB, GL_UNSIGNED_SHORT, __base_textureInfo.p_image_data16);   egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glTexImage2D [16-13]");
-//                }
-//                if(this->__base_textureInfo.uncomp_actual_comps==4){
-//                    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, __base_textureInfo.uncomp_width, __base_textureInfo.uncomp_height, 0, GL_RGBA, GL_UNSIGNED_SHORT, __base_textureInfo.p_image_data16);   egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glTexImage2D [16-14]");
-//                }   
-//            }
-
             setTextureFilterMode__(GL_TEXTURE_2D,mode);
-    //        glGenerateMipmap(GL_TEXTURE_2D); egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glGenerateMipmap [SHARE-98]");
-    //        glBindTexture(GL_TEXTURE_2D, 0); egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glBindTexture [SHARE-99]");
-
+    
         #else 
-            //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, __base_textureInfo.uncomp_width, __base_textureInfo.uncomp_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, __base_textureInfo.p_image_data); egeLog(EGE_CHECK_FOR_OPENGL_ERROR, "glTexImage2D [00-31]", this);
+
         #endif
     
     }else{
@@ -518,11 +448,7 @@ int ege3dTextureAbstract::releaseGpu(EGEint GpuTextureIndex,EGEint GpuSamplerInd
     
     #endif
         
-//        #if defined(__t_linux) || defined(EGE_EMSCRIPTEN_sim)
-//            if(__base_gpuTexture.samplerId!=0){
-//                glDeleteSamplers(1, &(__base_gpuTexture.samplerId)); __base_gpuTexture.samplerId=0;
-//            }
-//        #endif
+
     
     return 0;
 }
@@ -607,13 +533,7 @@ void ege3dTextureAbstract::compare(ege3dTextureAbstract &ref, bool verbose){
                     int pos=(ir*this->base_textureInfo__.uncomp_width)+ic; 
                     pos*=this->base_textureInfo__.uncomp_actual_comps;
 
-//                    src.R=this->__base_textureInfo.p_image_data8[pos];
-//                    src.G=this->__base_textureInfo.p_image_data8[pos+1];
-//                    src.B=this->__base_textureInfo.p_image_data8[pos+2];
-//                    
-//                    cmp.R=ref.__base_textureInfo.p_image_data8[pos];
-//                    cmp.G=ref.__base_textureInfo.p_image_data8[pos+1];
-//                    cmp.B=ref.__base_textureInfo.p_image_data8[pos+2];
+
                   
 #ifdef BIL_SPLIT_8
                     srcval=ege::colors::RGbytes_2_value(src.R,src.G);
@@ -640,11 +560,7 @@ void ege3dTextureAbstract::compare(ege3dTextureAbstract &ref, bool verbose){
                     
                     if(delta>maxdelta) maxdelta=delta;
                    
-//                    std::cout << "src->cmp R=" << (int)src.R << "/" << (int)cmp.R;
-//                    std::cout << "\tG=" << (int)src.G << "/" << (int)cmp.G;
-//                    std::cout << "\tB=" << (int)src.B << "/" << (int)cmp.B;
-//                    std::cout << "\tVALORI=" << srcval << "/" << cmpval;
-//                    std::cout << std::endl;
+
                     
                 }
             }
@@ -670,25 +586,7 @@ ege3dTextureJpeg::ege3dTextureJpeg(void){
     // Tramite host si chiama load per avere dati raw in struttura __base_textureInfo
     
 }
-/*
-ege3dTextureJpeg::ege3dTextureJpeg(std::string filename, EGE_ENU_TEXTURE_ROLE role){
-    ((ege3dTextureAbstract*)this)->load(filename,role);             // Esegue metodo della classe base (comune a tutti)
-    this->load(this->__base_filename,this->__base_role);            // Carica file in buffer memoria 
-    
-    int tilemode=0;
-    if(role==EGE_ENU_TEXTURE_ROLE::WangTile){
-        tilemode=1;
-    }
-        
-    ((ege3dTextureAbstract*)this)->loadGpu(tilemode);                       // Copia dati in GPU ed elimina memoria 
-    this->__base_textureInfo.releaseImageDataMemory();              // Ora libera subito la memoria PC 
-    
-#ifdef __ege_printinfo_textures_on
-    ((ege3dTextureAbstract*)this)->printInfo();
-#endif    
-    
-}
- */ 
+
 
 ege3dTextureJpeg::~ege3dTextureJpeg(){
     base_textureInfo__.releaseImageDataMemory();
@@ -757,9 +655,7 @@ void ege3dTextureJpeg::calcAlphaChannelAsElevationByColor(void){
                                 base_textureInfo__.p_image_data8[index+2] //-(unsigned char)min
                         ))/3.0f);
                 
-//                 short val; 
-//                 val=__base_textureInfo.p_image_data8[index+3];
-//                val--; 
+
             }
         }    
         
@@ -808,102 +704,6 @@ int ege3dTextureJpeg::load(std::string filename, EGE_ENU_TEXTURE_ROLE role, shor
     return res;
 }
 
-/*
-void ege3dTextureJpeg::load(BilFileReader* bil){
-    if(bil->info()->filesize>0){
-        __base_textureInfo.uncomp_req_comps = __base_textureInfo.uncomp_actual_comps = 3; // 3 bytes
-        __base_textureInfo.format=0;
-        __base_textureInfo.uncomp_width=bil->info()->sampleW;
-        __base_textureInfo.uncomp_height=bil->info()->sampleH;
-        __base_textureInfo.size=__base_textureInfo.uncomp_actual_comps*__base_textureInfo.uncomp_width*__base_textureInfo.uncomp_height;
-        
-        __base_textureInfo.p_image_data8 = (unsigned char*) malloc (__base_textureInfo.size); // R*G*B
-        
-        // Per ogni campione di bil , lo splitta in 3 uchar RGB
-        
-        for(int i=0; i<bil->info()->samples; i++){
-            bool corrected;
-            //signed short value=bil->value(i);
-            signed short valueCorr=bil->SubstInvalidValue(i,corrected);
-            ege::colors::RGB rgb;
-            ege::colors::bytesHiLo RG=ege::colors::val_2_RGbytes(valueCorr);
-          
-#ifdef BIL_SPLIT_8
-            
-            rgb.R=RG.hi;            // Hi
-            rgb.G=RG.lo;            // Lo   
-            rgb.B=0;                // sempre a 0 
-#endif 
-            
-           
-#ifdef BIL_SPLIT_HSL
-            ege::colors::HSL hsl;
-            
-            hsl=ege::colors::val_2_HSL(valueCorr);
-            ege::colors::HSL_2_RGB(hsl,rgb);  
-#endif            
-#ifdef BIL_SPLIT_655
-            
-            rgb.R = rgb.G = rgb.B = 0;
-            
-            rgb = ege::colors::val_2_rgbMask(valueCorr);
-            
-#endif             
-            
-            __base_textureInfo.p_image_data8[i*3]=rgb.R;
-            __base_textureInfo.p_image_data8[i*3+1]=rgb.G;
-            __base_textureInfo.p_image_data8[i*3+2]=rgb.B;
-            
-            //signed short vback;
-            //vback=ege::colors::RGbytes_2_value(RG.hi,RG.lo);
-            //std::cout << "valore=" << value << "\tvalore corretto=" << valueCorr <<"\tvalore_back=" << vback << std::endl;
-            
-            ///////////////////////////////////////////////////////////////
-            
-//            ege::colors::HSL hsl;
-//            ege::colors::RGB rgb;
-//            
-//            hsl.H=1/10000.0f*(float)value;          // tonalità
-//            hsl.S=0.5f;                             // saturazione  (0.5-1.0)
-//            hsl.L=0.2f;                             // luminosità   (0.25-0.75) 
-//            
-//            ege::colors::HSL_2_RGB(hsl,rgb);  
-//
-//            __base_textureInfo.p_image_data[i*3]=rgb.R;
-//            __base_textureInfo.p_image_data[i*3+1]=rgb.G;
-//            __base_textureInfo.p_image_data[i*3+2]=rgb.B;
-            
-            
-//            ///////////////////////////////////////////////////////////////
-//            signed short hi,lo; 
-//            unsigned char r,g,b;
-//            
-//            #define granularity 5000
-//            int rest = value % granularity;
-//            float grandvalue =(float)((value-rest)/granularity)+1;
-//            float sat=0.5f + (0.5f / (grandvalue/(10000.0f/granularity)));
-//            
-//            ege::colors::HSL hsl;
-//            ege::colors::RGB rgb;
-//            
-//            hsl.H=(float)rest/(float)granularity;       // tonalità
-//            hsl.S=sat;                                  // saturazione  (0.5-1.0)
-//            hsl.L=0.5f;                                 // luminosità   (0.25-0.75) 
-//            
-//            ege::colors::HSL_2_RGB(hsl,rgb);  
-//
-//            __base_textureInfo.p_image_data[i*3]=rgb.R;
-//            __base_textureInfo.p_image_data[i*3+1]=rgb.G;
-//            __base_textureInfo.p_image_data[i*3+2]=rgb.B;
-            
-            
-        }        
-                
-    }else{
-        egeLog(0,"ATTENZIONE: il file bil non è caricato oppure contiene deti invalidi (size==0)");
-    }
-}
-*/
 
 void ege3dTextureJpeg::save(std::string filename){
 
@@ -970,9 +770,7 @@ void ege3dTextureJpeg::save(std::string filename, int width, int height, int max
         }
 
     jpge::params par;
-//    __base_textureInfo.uncomp_width=width;
-//    __base_textureInfo.uncomp_height=height;
-//    __base_textureInfo.uncomp_actual_comps=__base_textureInfo.uncomp_req_comps=GLPixelByteNum;
+
     // 0 = Y (grayscale) only
     // 1 = YCbCr, no subsampling (H1V1, YCbCr 1x1x1, 3 blocks per MCU)
     // 2 = YCbCr, H2V1 subsampling (YCbCr 2x1x1, 4 blocks per MCU)
@@ -1025,62 +823,6 @@ void ege3dTextureJpeg::exportAsPPM(std::string filename){
 
 void ege3dTextureJpeg::save(unsigned int GpuImageId, std::string filename, short quality){
 
-        // Encode in jpeg
-//    int datasize;
-//    if(target==enuTargetBuffer::COLOR_COMPONENT){ datasize=3; }  // 3=GL_RGB 
-//    if(target==enuTargetBuffer::DEPTH_COMPONENT ){ datasize=4; }  // 1=GL_UNSIGNED_SHORT 
-//    if(target==enuTargetBuffer::STENCIL_COMPONENT){ datasize=3; }  // 3=GL_RGB 
-//
-//    int uncomp_width = __texWidth, uncomp_height = __texHeight;
-//
-//    // SE si imposta un valore grande (>1000 c.a.) si incazza 
-//    // Sospetto l'encoder jpeg sia la causa
-//    if(uncomp_width>JPEG_ENCODER_MAX_WIDTH)uncomp_width=JPEG_ENCODER_MAX_WIDTH;
-//    if(uncomp_height>JPEG_ENCODER_MAX_HEIGHT)uncomp_height=JPEG_ENCODER_MAX_HEIGHT;
-//    
-//    jpge::params uncomp_req_comps;
-//    // Legge dati da buffer
-//    GLushort pixels[uncomp_width][uncomp_height][datasize];
-//
-//    if(target==enuTargetBuffer::COLOR_COMPONENT){ 
-//        //glReadPixels( 0, 0, uncomp_width, uncomp_height, GL_RGB, GL_UNSIGNED_SHORT, pixels);
-//        glReadPixels( 0, 0, uncomp_width, uncomp_height, GL_RGB, GL_UNSIGNED_SHORT, pixels);
-//        //std::cout << " to target COLOR " << std::endl;
-//    }  
-//    if(target==enuTargetBuffer::DEPTH_COMPONENT){ 
-//        glReadPixels( 0, 0, uncomp_width, uncomp_height, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, pixels);
-//        //std::cout << " to target DEPTH " << std::endl;
-//    }  
-//    if(target==enuTargetBuffer::STENCIL_COMPONENT){ 
-//        glReadPixels( 0, 0, uncomp_width, uncomp_height, GL_STENCIL, GL_UNSIGNED_SHORT, pixels);
-//        //std::cout << " to target STENCIL " << std::endl;
-//    }  
-//
-//    //(const char *pFilename, int width, int height, int num_channels, const uint8 *pImage_data, const params &comp_params)
-//    jpge::uint8 Image_data[uncomp_width*uncomp_height*datasize];            
-//
-//    for(int w=0; w<uncomp_width; w++){
-//        for(int h=0; h<uncomp_height; h++){
-//            
-//            int i=((h*uncomp_width)+w)*datasize;
-//            int H=uncomp_height-h;
-//
-//            for(int j=0; j<datasize; j++){
-//                Image_data[i+j]=pixels[H][w][j];
-//            }
-//            
-//        }
-//    }
-//    
-//    uncomp_req_comps.m_quality=20;
-//    uncomp_req_comps.m_subsampling=jpge::H2V2;
-//    
-//    std::string filename="./excluded/printscreen/undef.jpeg";
-//    if(target==enuTargetBuffer::DEPTH_COMPONENT){  filename = "excluded/depthmap.jpeg"; }
-//    if(target==enuTargetBuffer::COLOR_COMPONENT){  filename = "excluded/colormap.jpeg"; }
-//    
-//    bool res=jpge::compress_image_to_jpeg_file(filename.c_str(), uncomp_width,uncomp_height,datasize,Image_data,uncomp_req_comps);
-    
     jpge::params par;
     
     // 0 = Y (grayscale) only
@@ -1089,9 +831,6 @@ void ege3dTextureJpeg::save(unsigned int GpuImageId, std::string filename, short
     // 3 = YCbCr, H2V2 subsampling (YCbCr 4x1x1, 6 blocks per MCU-- very common)
     par.m_subsampling=jpge::subsampling_t::H2V1;
     par.m_quality=100;
-    
-//    __base_textureInfo.uncomp_width=512;
-//    __base_textureInfo.uncomp_height=512;
    
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &base_textureInfo__.uncomp_height);
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, & base_textureInfo__.uncomp_width);
@@ -1101,7 +840,6 @@ void ege3dTextureJpeg::save(unsigned int GpuImageId, std::string filename, short
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, GpuImageId);
     glReadBuffer(GL_BACK); // Ensure we are reading from the back buffer.
-    //glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 0, 0,  __base_textureInfo.uncomp_width, __base_textureInfo.uncomp_height, 0);
         
     base_textureInfo__.p_image_data8 = (GLubyte*) malloc(base_textureInfo__.uncomp_width * base_textureInfo__.uncomp_height * bytesPerPixel);
     
@@ -1111,7 +849,6 @@ void ege3dTextureJpeg::save(unsigned int GpuImageId, std::string filename, short
                     GL_RGB, GL_UNSIGNED_BYTE, 
                     base_textureInfo__.p_image_data8);
     
-    //glGetTexImage( GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE, __base_textureInfo.p_image_data);
     
     #define jpeg_num_channels 3     
     bool res=jpge::compress_image_to_jpeg_file( filename.c_str(), 
@@ -1872,16 +1609,7 @@ void ege3dTexturePack::setmode(short mode){
     }
 }
 
-//int ege3dTexturePack::add(std::string filename, EGE_ENU_TEXTURE_ROLE role=EGE_ENU_TEXTURE_ROLE::NoneassociatedUVUnwrap){
-//int ege3dTexturePack::add_deprecated(std::string filename, EGE_ENU_TEXTURE_ROLE role,  std::string associatedUVUnwrap){
-//    
-//    ege3dTextureJpeg *obj = new ege3dTextureJpeg(filename,role);
-//    
-//    _textures.push_back((ege3dTextureAbstract*)obj); 
-//    _UVUnwrapNameDeprecated.push_back(associatedUVUnwrap);
-//    
-//    return obj->getGpuTextureIndex();
-//}
+
 
 void ege3dTexturePack::add(ege3dTextureAbstract *texture, EGE_ENU_TEXTURE_ROLE role, std::string mnemonic){
     
@@ -1974,13 +1702,7 @@ void ege3dTexturePack::writeSubTextureToArrayBuffer__(int edgesize, EGEuchar * s
                 dest[index+1]=src[srcindex+1];           
                 dest[index+2]=src[srcindex+2]; 
                 dest[index+3]=255;
-//                if(srcImageNumOfFieldsPerPixel==dstImageNumOfFieldsPerPixel==4){
-//                    dest[index+3]=src[srcindex+3];
-//                }else{
-//                    if(dstImageNumOfFieldsPerPixel==4){
-//                        dest[index+3]=255;      // se non c'è sorgente per canale alfa
-//                    }
-//                }
+
             }
         }    
 }
