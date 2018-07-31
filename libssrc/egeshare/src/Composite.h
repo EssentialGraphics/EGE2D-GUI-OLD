@@ -49,8 +49,6 @@ using namespace std;
 
 // using namespace boost::patterns::gof::structurals::composite;
 
-
-
 namespace boost{
     namespace patterns{
         namespace gof{

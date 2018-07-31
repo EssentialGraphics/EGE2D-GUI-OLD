@@ -29,7 +29,7 @@ void* egeIAction::container(void){
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// tagIndex è indice della variabile in OPC (da lookup)
+// tagIndex is the index of the variable in OPC (from lookup)
 egeActionStatusValue::egeActionStatusValue(EGEint tagIndex){
     this->_tagIndex=tagIndex;
 }
@@ -48,7 +48,7 @@ void egeActionStatusValue::exec(void){
 }
  
 ////////////////////////////////////////////////////////////////////////////////
-// Parent è lo switch da cui prende il valore attuale di stato da propagare a control object
+// Parent is the switch from whom to bring the actual value of the state to propagare to control object
 egeActionChangeControlValue::egeActionChangeControlValue(ege2dIToolControl *controlParent, ege2dIToolControl *controlObject){
     controlParent_=controlParent;
     controlObject_=controlObject;
@@ -63,7 +63,7 @@ void egeActionChangeControlValue::exec(void){
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// tagIndex è indice della variabile in OPC (da lookup)
+// tagIndex is the index of the variable in OPC (from lookup)
 egeActionSetValue::egeActionSetValue(EGEint tagIndex){
     this->_tagIndex=tagIndex;
 }
