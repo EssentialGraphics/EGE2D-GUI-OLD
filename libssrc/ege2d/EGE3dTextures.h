@@ -140,15 +140,15 @@ enum EGE_ENU_TEXTURE_ROLE {
 };
 
 struct TextureInfo{
-    EGEint uncomp_width = 0;
-    EGEint uncomp_height = 0;
-    EGEint uncomp_actual_comps = 0;
-    EGEint uncomp_req_comps = 4;
-    EGEuchar *p_image_data8=NULL;
-    EGEushort *p_image_data16=NULL;
+    EGEint uncomp_width = 0;                    // Image width in pixels
+    EGEint uncomp_height = 0;                   // Image height in pixels
+    EGEint uncomp_actual_comps = 0;             // Actual image format : if RGB==3 / if RGBA==4
+    EGEint uncomp_req_comps = 4;                // Requested format while allocating dinamically (RGB==3 / RGBA==4)
+    EGEuchar *p_image_data8=NULL;               // Unsigned char single dimension array for RGB/RGBA colors
+    EGEushort *p_image_data16=NULL;             // Not used
     
-    EGEint size;            // GL_UNSIGNED_BYTE
-    EGEint format;          // GL_RGB / GL_RGBA
+    EGEint size;                                // Total number of elements for pixel array data (p_image_data8[])
+    EGEint format;                              // contains GL_RGB / GL_RGBA value according with format
     
     void releaseImageDataMemory(void){
         if(p_image_data8!=NULL){
