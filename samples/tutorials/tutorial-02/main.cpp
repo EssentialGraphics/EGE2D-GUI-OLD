@@ -52,6 +52,9 @@ int main(int argc, char** argv){
     pTextureEmpty->loadGpu();                                // Image is "copied" to GPU memory 
     pW->draw(pTextureEmpty);                                 // Display image to window
     
+    // Sample save method - uncomment to run
+    // pTextureEmpty->save("myOnTheFlyJpeg.jpg");               // Saves the image to disk  
+        
     // -------------------------------------------------------------------------
     // Sample 3 : Image copy operator
     //              Copy a square section from source to destination
